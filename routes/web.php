@@ -14,3 +14,7 @@
 Route::get('/', 'PostControlador@index');
 
 Route::post('/', 'PostControlador@store');
+
+Route::get('/editar/{id}', 'PostControlador@edit');
+
+Route::post('/{id}', 'PostControlador@update');

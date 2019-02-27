@@ -54,8 +54,8 @@ class PostControlador extends Controller
      */
     public function show($id)
     {
-        //
-    }
+        
+    }   
 
     /**
      * Show the form for editing the specified resource.
@@ -65,7 +65,11 @@ class PostControlador extends Controller
      */
     public function edit($id)
     {
-        //
+        $post =  Post::find($id);
+        if (isset($post)) {
+            return view('editarPost', compact('post'));
+        }
+        return redirect('/');
     }
 
     /**
@@ -77,7 +81,20 @@ class PostControlador extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        if (isset($post)) {
+            $post->delete();
+
+            $path = $request->file('arquivo')->store('imagens', 'public');
+        
+            $post = new Post();
+            $post->email = $request->input('email');
+            $post->mensagem = $request->input('mensagem');
+            $post->arquivo = $path;
+            $post->save();
+            return redirect('/');
+        }
+        
     }
 
     /**
