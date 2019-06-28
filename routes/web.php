@@ -14,8 +14,4 @@
 Route::get('/', 'PostControlador@index');
 Route::post('/', 'PostControlador@store');
 Route::delete('/{id}', 'PostControlador@destroy');
-
-
-Route::get('/editar/{id}', 'PostControlador@edit');
-
-Route::post('/{id}', 'PostControlador@update');
+Route::get('/download/{id}', 'PostControlador@download');
